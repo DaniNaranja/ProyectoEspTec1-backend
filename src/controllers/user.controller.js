@@ -7,11 +7,11 @@ export async function getUsers(req, res) {
 }
 
 export async function getMessagesByUser(req, res) {
+
+	const userId= req.params.userId;
 	try {
-		const messages = await Message.findById(req.params.userId).populate(
-			"user"
-		);
-		return res.status(200).send({ user });
+		const messages = await Message.find(userId).populate("user")
+		return res.status(200).send({messages});
 	} catch (error) {
 		return res.status(500).send({ error });
 	}

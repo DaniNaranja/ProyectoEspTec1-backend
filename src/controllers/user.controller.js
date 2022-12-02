@@ -1,14 +1,15 @@
 import User from "../models/user.model.js";
+import Message from "../models/message.model.js";
 
 export async function getUsers(req, res) {
-	const users = await User.find().populate("address jobs");
+	const users = await User.find();
 	return res.status(200).send({ users });
 }
 
-export async function getUser(req, res) {
+export async function getMessagesByUser(req, res) {
 	try {
-		const user = await User.findById(req.params.userId).populate(
-			"address jobs"
+		const messages = await Message.findById(req.params.userId).populate(
+			"user"
 		);
 		return res.status(200).send({ user });
 	} catch (error) {

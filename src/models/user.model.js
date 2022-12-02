@@ -5,20 +5,20 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	lastName: {
+	email: {
 		type: String,
 		required: true,
+		unique: true,
 	},
-	address: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "Address",
+	dni: {
+		type: String,
+		required: true,
+		unique:true,
 	},
-	jobs: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Job",
-		},
-	],
+	password: {
+			type: String,
+			required: true,
+	},
 });
 
 const userModel = mongoose.model("User", userSchema);

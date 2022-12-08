@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 const userSchema = new mongoose.Schema({
-	name: {
+	nickname: {
 		type: String,
 		required: true,
 	},
@@ -10,15 +10,40 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	dni: {
-		type: String,
-		required: true,
-		unique:true,
-	},
 	password: {
 			type: String,
 			required: true,
 	},
+	profile: {
+			type: String,
+			required: false,
+	},
+	banner: {
+		type: String,
+		required: false,
+	},
+	linkIG: {
+		type: String,
+		required: false,
+	},
+	linkFB: {
+		type: String,
+		required: false,
+	},
+	linkTW: {
+		type: String,
+		required: false,
+	},
+	descripcion: {
+		type: String,
+		required: false,
+	},
+	drawings: [
+				{
+					type: mongoose.Schema.Types.ObjectId,
+					ref: "Drawing",
+				},
+	],
 });
 
 const userModel = mongoose.model("User", userSchema);

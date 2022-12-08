@@ -1,22 +1,26 @@
 import express from "express";
-import userRouter from "./src/routes/user.router.js";
+
 import authRouter from "./src/routes/auth.router.js";
-import messageRouter from "./src/routes/message.router.js";
+import homeRouter from "./src/routes/home.router.js";
+import profileRouter from "./src/routes/profile.router";
+import submitRouter from "./src/routes/submit.router.js";
+import visorRouter from "./src/routes/visor.router.js";
+
+
 import { PORT } from "./src/configs/environment.js";
 import connectDB from "./src/configs/mongo.js";
+
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/auth", authRouter);
-app.use("/messages", messageRouter);
-app.use("/users", userRouter);
+app.use("/profile", profileRouter);
+app.use("/submit", submitRouter);
+app.use("/visor", visorRouter);
+app.use("/", homeRouter);
 
-app.get("/", function (req, res) {
-	const student= "Daniela Paredes"
-	res.send(student);
-});
 
 async function startSever() {
 	const isConnected = await connectDB();

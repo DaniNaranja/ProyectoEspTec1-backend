@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import Drawing from "../models/drawing.model";
+import Drawing from "../models/drawing.model.js";
 
 export async function submitDrawing(req, res) {
 	var success= false;

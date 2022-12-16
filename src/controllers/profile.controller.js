@@ -1,14 +1,28 @@
 import User from "../models/user.model.js";
 
 export async function getUserProfile(req, res) {
-		const userId= req.params.userId;
+    var success= false;
+	const userId= req.params.userId;
 	
-		const user= await User.findOne({id: userId});
+	
+
+	try {
+        const user= await User.findOne({id: userId});
+            
+        success= true;
+        return res.status(201).send({success, user})
+    
+    } catch (error) {
+        return res.status(500).send({success, error})
+    }
+	
+		
 
 }
 
 export async function editProfile(req, res) {
     const userId= req.params.userId;
+    var success= false;
 
     const user= await User.findOne({id: userId});
     
@@ -20,7 +34,18 @@ export async function editProfile(req, res) {
     user.linkTW= req.body.linkTW;
     user.descripcion= req.body.descripcion;
 
-    await user.save();
+    
+
+    try {
+		await user.save();
+		
+		success= true;
+		return res.status(201).send({success})
+
+	} catch (error) {
+		return res.status(500).send({success, error})
+	}
+    
 
 }
 

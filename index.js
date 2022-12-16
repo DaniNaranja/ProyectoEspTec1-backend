@@ -2,9 +2,10 @@ import express from "express";
 
 import authRouter from "./src/routes/auth.router.js";
 import homeRouter from "./src/routes/home.router.js";
-import profileRouter from "./src/routes/profile.router";
+import profileRouter from "./src/routes/profile.router.js";
 import submitRouter from "./src/routes/submit.router.js";
 import visorRouter from "./src/routes/visor.router.js";
+import galleryRouter from "./src/routes/gallery.router.js";
 
 
 import { PORT } from "./src/configs/environment.js";
@@ -19,6 +20,7 @@ app.use("/auth", authRouter);
 app.use("/profile", profileRouter);
 app.use("/submit", submitRouter);
 app.use("/visor", visorRouter);
+app.use("/gallery", galleryRouter);
 app.use("/", homeRouter);
 
 
